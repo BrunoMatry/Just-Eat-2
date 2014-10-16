@@ -1,0 +1,24 @@
+ets_restaurant:
+    resource: "@ETSRestaurantBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ets_gestion_de_livraisons:
+    resource: "@ETSGestionDeLivraisonsBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+ets_user:
+    resource: "@ETSUserBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+login:
+    pattern:    /login
+    defaults:   { _controller: ETSUserBundle:Security:login }
+    
+login_check:
+    pattern:    /login_check
+    
+logout:
+    pattern:    /logout
+    
+
+

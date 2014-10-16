@@ -1,0 +1,3 @@
+ets_restaurant_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ETSRestaurantBundle:Default:index }

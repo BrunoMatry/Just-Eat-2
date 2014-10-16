@@ -1,0 +1,7 @@
+parameters:
+#    ets_gestion_de_livraisons.example.class: ETS\GestionDeLivraisonsBundle\Example
+
+services:
+#    ets_gestion_de_livraisons.example:
+#        class: %ets_gestion_de_livraisons.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

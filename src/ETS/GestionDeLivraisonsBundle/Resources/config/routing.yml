@@ -1,0 +1,5 @@
+ets_gestion_de_livraisons_index:
+    path:     /
+    defaults: { _controller: ETSGestionDeLivraisonsBundle:Default:index }
+    
+    

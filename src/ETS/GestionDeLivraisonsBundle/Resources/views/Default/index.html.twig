@@ -1,0 +1,13 @@
+Hello !
+
+{% if app.user.username is defined %} Your logged as {{ app.user.username }} {% endif %} 
+
+
+
+{% if app.user.username is defined %}
+    <a href="{{ path('ets_user_edit') }}">Edit</a>
+    <a href="{{ path('logout') }}">Logout</a>    
+{% else %}
+    <a href="{{ path('ets_user_add') }}">Sign In</a>
+    <a href="{{ path('login') }}">Login</a>
+{% endif %} 

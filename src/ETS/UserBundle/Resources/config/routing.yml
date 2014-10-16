@@ -1,0 +1,7 @@
+ets_user_add:
+    path:     /add
+    defaults: { _controller: ETSUserBundle:Default:add }
+
+ets_user_edit:
+    path:     /edit
+    defaults: { _controller: ETSUserBundle:Default:edit }
