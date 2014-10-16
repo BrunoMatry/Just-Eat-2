@@ -1,13 +1,46 @@
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<br/>
+<br/>
+
 Hello !
 
 {% if app.user.username is defined %} Your logged as {{ app.user.username }} {% endif %} 
 
-
-
 {% if app.user.username is defined %}
-    <a href="{{ path('ets_user_edit') }}">Edit</a>
+    <a href="{{ path('ets_user_edit') }}">Edit your profile</a>
     <a href="{{ path('logout') }}">Logout</a>    
 {% else %}
     <a href="{{ path('ets_user_add') }}">Sign In</a>
     <a href="{{ path('login') }}">Login</a>
 {% endif %} 
+
+</br>
+</br>
+
+{% if is_granted('ROLE_ENTREPRENEUR') %}
+    <a href="{{ path('ets_restaurant_add') }}"><button type="button" id="addbutton">Add Restaurant</button></a>
+{% endif %}
+
+<br/>
+<br/>
+
+<table>
+{% for r in restaurants %}
+    <tr>
+        <td>{{ r.name }}</td>
+{% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
+        <td>
+            <a href="{{ path('ets_restaurant_edit', {'restaurant': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
+        </td>
+        <td><a href="{{ path('ets_restaurant_delete', {'restaurant': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
+    </tr>
+{% endif %}
+{% endfor %}
+</table>

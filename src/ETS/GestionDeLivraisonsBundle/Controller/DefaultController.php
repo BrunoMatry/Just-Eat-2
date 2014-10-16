@@ -8,7 +8,14 @@ class DefaultController extends Controller
 {
     public function indexAction() {
         
-        return $this->render('ETSGestionDeLivraisonsBundle:Default:index.html.twig', array());
+        $retaurants = $this->getDoctrine()
+                           ->getManager()
+                           ->getRepository('ETSRestaurantBundle:Restaurant')
+                           ->getAllRestaurants();
+        
+        return $this->render('ETSGestionDeLivraisonsBundle:Default:index.html.twig', array(
+            'restaurants' => $retaurants
+        ));
         
     }
          

@@ -21,6 +21,11 @@ class DefaultController extends Controller
             ->add('phone_number', 'text')
             ->add('address', 'text')
             ->add('password', 'password')
+            ->add('entrepreneur', 'checkbox', array(
+                'label' => 'Entrepreneur?',
+                'required' => false,
+                'mapped' => false
+            ))
             ->add('save', 'submit')
         ;
         
@@ -29,7 +34,11 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         
         if ($form->isValid()) {
-
+            
+            if($form['entrepreneur']->getData()) {
+                $user->addRole('ROLE_ENTREPRENEUR');
+            }
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

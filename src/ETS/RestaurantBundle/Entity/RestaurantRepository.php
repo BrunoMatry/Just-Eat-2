@@ -3,6 +3,7 @@
 namespace ETS\RestaurantBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * RestaurantRepository
@@ -12,4 +13,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class RestaurantRepository extends EntityRepository
 {
+    
+    public function getAllRestaurants()
+    {
+      $query = $this->createQueryBuilder('a')
+                    ->getQuery();
+
+      return new Paginator($query);
+    }
+  
 }

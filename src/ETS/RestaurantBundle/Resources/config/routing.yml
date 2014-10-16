@@ -1,3 +1,11 @@
-ets_restaurant_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ETSRestaurantBundle:Default:index }
+ets_restaurant_add:
+    path:     /add
+    defaults: { _controller: ETSRestaurantBundle:Default:add }
+    
+ets_restaurant_edit:
+    path:     /edit/{restaurant}
+    defaults: { _controller: ETSRestaurantBundle:Default:edit }
+
+ets_restaurant_delete:
+    path:     /delete/{restaurant}
+    defaults: { _controller: ETSRestaurantBundle:Default:delete }

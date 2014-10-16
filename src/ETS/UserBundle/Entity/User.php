@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
- *
+ * 
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="UserRepository")
  */
@@ -20,43 +20,47 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
      */
-    private $username;
+    protected $username;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birth_date", type="datetime")
      */
-    private $birthDate;
+    protected $birthDate;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
      */
-    private $address;
+    protected $address;
 
     /**
      * @var string
      *
      * @ORM\Column(name="phone_number", type="string", length=255)
      */
-    private $phoneNumber;
+    protected $phoneNumber;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    private $password;
-
+    protected $password;
+    
+    /**
+    * @ORM\Column(name="roles", type="array")
+    */
+    protected $roles = array();
 
     /**
      * Get id
@@ -186,11 +190,6 @@ class User implements UserInterface
     public function eraseCredentials() {
         
     }
-    
-    /**
-    * @ORM\Column(name="roles", type="array")
-    */
-    private $roles = array();
 
     public function getRoles() {
        return $this->roles; 
@@ -198,6 +197,12 @@ class User implements UserInterface
 
     public function getSalt() {
         
+    }
+    
+    public function addRole($role) {
+       if (!in_array($role, $this->roles, true)) {
+           $this->roles[] = $role;
+       }
     }
 
 }

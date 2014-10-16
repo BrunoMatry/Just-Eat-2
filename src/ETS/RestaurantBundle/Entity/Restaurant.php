@@ -44,15 +44,15 @@ class Restaurant
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="restaurateur", type="string", length=255)
+     * 
+     * @ORM\Column(name="restaurateur", type="string", length=255, nullable=true)
      */
     private $restaurateur;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="entrepreneur", type="string", length=255)
+     * 
+     * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
      */
     private $entrepreneur;
 
@@ -162,7 +162,7 @@ class Restaurant
     /**
      * Set entrepreneur
      *
-     * @param string $entrepreneur
+     * @param ETS\UserBundle\Entity\User $entrepreneur
      * @return Restaurant
      */
     public function setEntrepreneur($entrepreneur)
@@ -175,7 +175,7 @@ class Restaurant
     /**
      * Get entrepreneur
      *
-     * @return string 
+     * @return ETS\UserBundle\Entity\User 
      */
     public function getEntrepreneur()
     {
