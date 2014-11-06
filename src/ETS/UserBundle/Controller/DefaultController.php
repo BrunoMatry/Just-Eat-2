@@ -190,6 +190,14 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($restaurateur);
             
+            $prevRestaurants = $em->getRepository('ETSRestaurantBundle:Restaurant')
+                              ->findByRestaurateur($restaurateur);
+            
+            foreach($prevRestaurants as $r) {
+                $r->setRestaurateur(null);
+                $em->persist($r);
+            }
+            
             $restaurants = $form['restaurants']->getData();
             
             foreach($restaurants as $r) {
@@ -219,6 +227,15 @@ class DefaultController extends Controller
         
         if ($restaurateur != null) {
             $em = $this->getDoctrine()->getManager();
+            
+            $restaurants = $em->getRepository('ETSRestaurantBundle:Restaurant')
+                              ->findByRestaurateur($restaurateur);
+            
+            foreach($restaurants as $r) {
+                $r->setRestaurateur(null);
+                $em->persist($r);
+            }
+            
             $em->remove($restaurateur);
             $em->flush();
         }
