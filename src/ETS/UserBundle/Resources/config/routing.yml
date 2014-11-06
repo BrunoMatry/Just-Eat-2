@@ -6,14 +6,14 @@ ets_user_edit:
     path:     /edit
     defaults: { _controller: ETSUserBundle:Default:edit }
     
-ets_user_add_restaurateur:
+ets_restaurateur_add:
     path:     /addrestaurateur
-    defaults: { _controller: ETSUserBundle:Default:addRestaurateur }
+    defaults: { _controller: ETSUserBundle:Restaurateur:add }
     
-ets_user_edit_restaurateur:
+ets_restaurateur_edit:
     path:     /editrestaurateur/{restaurateur}
-    defaults: { _controller: ETSUserBundle:Default:editRestaurateur }
+    defaults: { _controller: ETSUserBundle:Restaurateur:edit }
     
-ets_user_delete_restaurateur:
+ets_restaurateur_delete:
     path:     /deleterestaurateur/{restaurateur}
-    defaults: { _controller: ETSUserBundle:Default:deleteRestaurateur }
+    defaults: { _controller: ETSUserBundle:Restaurateur:delete }

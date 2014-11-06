@@ -26,7 +26,7 @@ Hello !
 
 {% if is_granted('ROLE_ENTREPRENEUR') %}
     <a href="{{ path('ets_restaurant_add') }}"><button type="button" id="addbutton">Add Restaurant</button></a>
-    <a href="{{ path('ets_user_add_restaurateur') }}"><button type="button" id="addbutton">Add Restaurateur</button></a>
+    <a href="{{ path('ets_restaurateur_add') }}"><button type="button" id="addbutton">Add Restaurateur</button></a>
 {% endif %}
 
 <br/>
@@ -63,9 +63,9 @@ Restaurateurs:
         <td>{{ r.username }}</td>
 {% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
         <td>
-            <a href="{{ path('ets_user_edit_restaurateur', {'restaurateur': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
+            <a href="{{ path('ets_restaurateur_edit', {'restaurateur': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
         </td>
-        <td><a href="{{ path('ets_user_delete_restaurateur', {'restaurateur': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
+        <td><a href="{{ path('ets_restaurateur_delete', {'restaurateur': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
     </tr>
 {% endif %}
 {% endfor %}
