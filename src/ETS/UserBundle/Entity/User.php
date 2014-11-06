@@ -61,6 +61,13 @@ class User implements UserInterface
     * @ORM\Column(name="roles", type="array")
     */
     protected $roles = array();
+    
+    /**
+     * @var string
+     * 
+     * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
+     */
+    private $entrepreneur;
 
     /**
      * Get id
@@ -203,6 +210,29 @@ class User implements UserInterface
        if (!in_array($role, $this->roles, true)) {
            $this->roles[] = $role;
        }
+    }
+    
+    /**
+     * Set entrepreneur
+     *
+     * @param ETS\UserBundle\Entity\User $entrepreneur
+     * @return Restaurant
+     */
+    public function setEntrepreneur($entrepreneur)
+    {
+        $this->entrepreneur = $entrepreneur;
+
+        return $this;
+    }
+
+    /**
+     * Get entrepreneur
+     *
+     * @return ETS\UserBundle\Entity\User 
+     */
+    public function getEntrepreneur()
+    {
+        return $this->entrepreneur;
     }
 
 }

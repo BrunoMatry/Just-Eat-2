@@ -45,7 +45,7 @@ class Restaurant
     /**
      * @var string
      * 
-     * @ORM\Column(name="restaurateur", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
      */
     private $restaurateur;
 

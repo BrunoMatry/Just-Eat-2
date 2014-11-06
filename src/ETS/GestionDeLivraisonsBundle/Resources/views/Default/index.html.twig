@@ -26,8 +26,13 @@ Hello !
 
 {% if is_granted('ROLE_ENTREPRENEUR') %}
     <a href="{{ path('ets_restaurant_add') }}"><button type="button" id="addbutton">Add Restaurant</button></a>
+    <a href="{{ path('ets_user_add_restaurateur') }}"><button type="button" id="addbutton">Add Restaurateur</button></a>
 {% endif %}
 
+<br/>
+<br/>
+
+Restaurants:
 <br/>
 <br/>
 
@@ -40,6 +45,27 @@ Hello !
             <a href="{{ path('ets_restaurant_edit', {'restaurant': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
         </td>
         <td><a href="{{ path('ets_restaurant_delete', {'restaurant': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
+    </tr>
+{% endif %}
+{% endfor %}
+</table>
+
+<br/>
+<br/>
+
+Restaurateurs:
+<br/>
+<br/>
+
+<table>
+{% for r in restaurateurs %}
+    <tr>
+        <td>{{ r.username }}</td>
+{% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
+        <td>
+            <a href="{{ path('ets_user_edit_restaurateur', {'restaurateur': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
+        </td>
+        <td><a href="{{ path('ets_user_delete_restaurateur', {'restaurateur': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
     </tr>
 {% endif %}
 {% endfor %}

@@ -1,6 +1,6 @@
 ets_restaurant:
     resource: "@ETSRestaurantBundle/Resources/config/routing.yml"
-    prefix:   /Restaurant
+    prefix:   /restaurant
 
 ets_gestion_de_livraisons:
     resource: "@ETSGestionDeLivraisonsBundle/Resources/config/routing.yml"
@@ -8,7 +8,7 @@ ets_gestion_de_livraisons:
     
 ets_user:
     resource: "@ETSUserBundle/Resources/config/routing.yml"
-    prefix:   /User
+    prefix:   /user
     
 login:
     pattern:    /login

@@ -13,8 +13,14 @@ class DefaultController extends Controller
                            ->getRepository('ETSRestaurantBundle:Restaurant')
                            ->getAllRestaurants();
         
+        $retaurateurs = $this->getDoctrine()
+                             ->getManager()
+                             ->getRepository('ETSUserBundle:User')
+                             ->findByRole('ROLE_RESTAURATEUR');
+        
         return $this->render('ETSGestionDeLivraisonsBundle:Default:index.html.twig', array(
-            'restaurants' => $retaurants
+            'restaurants' => $retaurants,
+            'restaurateurs' => $retaurateurs
         ));
         
     }

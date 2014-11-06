@@ -5,3 +5,15 @@ ets_user_add:
 ets_user_edit:
     path:     /edit
     defaults: { _controller: ETSUserBundle:Default:edit }
+    
+ets_user_add_restaurateur:
+    path:     /addrestaurateur
+    defaults: { _controller: ETSUserBundle:Default:addRestaurateur }
+    
+ets_user_edit_restaurateur:
+    path:     /editrestaurateur/{restaurateur}
+    defaults: { _controller: ETSUserBundle:Default:editRestaurateur }
+    
+ets_user_delete_restaurateur:
+    path:     /deleterestaurateur/{restaurateur}
+    defaults: { _controller: ETSUserBundle:Default:deleteRestaurateur }
