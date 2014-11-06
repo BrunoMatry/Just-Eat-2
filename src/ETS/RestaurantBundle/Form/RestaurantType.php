@@ -13,14 +13,8 @@ class RestaurantType extends AbstractType
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('name')
-            ->add('address')
-            ->add('phoneNumber')
-            ->add('restaurateur', null, array('required' => false))
-            ->add('save', 'submit')
-        ;
+    {            
+
     }
     
     /**

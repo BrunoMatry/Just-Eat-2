@@ -4,8 +4,8 @@ namespace ETS\RestaurantBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ETS\RestaurantBundle\Entity\Restaurant;
-use ETS\RestaurantBundle\Form\RestaurantType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 
 class DefaultController extends Controller
 {
@@ -17,7 +17,29 @@ class DefaultController extends Controller
         
         $restaurant = new Restaurant();
         
-        $form = $this->createForm(new RestaurantType, $restaurant);
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $restaurant);
+        
+        $formBuilder
+            ->add('name')
+            ->add('address')
+            ->add('phoneNumber')
+            ->add('restaurateur', 'entity', array(
+                'class' => 'ETSUserBundle:User',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('v')
+                       ->select('u')
+                       ->from('ETSUserBundle:User', 'u')
+                       ->where('u.roles LIKE :role AND u.entrepreneur = :ent')
+                       ->setParameter('role', '%"ROLE_RESTAURATEUR"%')
+                       ->setParameter('ent', $this->get('security.context')->getToken()->getUser());
+                },
+                'property' => 'username',
+                'required' => false
+            ))
+            ->add('save', 'submit')
+        ;
+        
+        $form = $formBuilder->getForm();
        
         $form->handleRequest($request);
 
@@ -53,7 +75,29 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
         }
         
-        $form = $this->createForm(new RestaurantType, $restaurant);
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $restaurant);
+        
+        $formBuilder
+            ->add('name')
+            ->add('address')
+            ->add('phoneNumber')
+            ->add('restaurateur', 'entity', array(
+                'class' => 'ETSUserBundle:User',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('v')
+                       ->select('u')
+                       ->from('ETSUserBundle:User', 'u')
+                       ->where('u.roles LIKE :role AND u.entrepreneur = :ent')
+                       ->setParameter('role', '%"ROLE_RESTAURATEUR"%')
+                       ->setParameter('ent', $this->get('security.context')->getToken()->getUser());
+                },
+                'property' => 'username',
+                'required' => false
+            ))
+            ->add('save', 'submit')
+        ;
+        
+        $form = $formBuilder->getForm();
         
         $form->handleRequest($request);
         

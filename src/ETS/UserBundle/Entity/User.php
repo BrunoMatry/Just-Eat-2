@@ -68,6 +68,12 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
      */
     private $entrepreneur;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="ETS\RestaurantBundle\Entity\Restaurant", mappedBy="restaurateur")
+    */
+    protected $restaurants = array();
+    
 
     /**
      * Get id
@@ -233,6 +239,24 @@ class User implements UserInterface
     public function getEntrepreneur()
     {
         return $this->entrepreneur;
+    }
+    
+    /**
+     * Get restaurants 
+     */
+    public function getRestaurants()
+    {
+        return $this->restaurants;
+    }
+    
+    /**
+     * Set restaurants 
+     */
+    public function setRestaurants($restaurants)
+    {
+        $this->restaurants = $restaurants;
+        
+        return $this;
     }
 
 }

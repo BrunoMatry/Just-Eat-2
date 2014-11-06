@@ -8,19 +8,19 @@ class DefaultController extends Controller
 {
     public function indexAction() {
         
-        $retaurants = $this->getDoctrine()
+        $restaurants = $this->getDoctrine()
                            ->getManager()
                            ->getRepository('ETSRestaurantBundle:Restaurant')
                            ->getAllRestaurants();
         
-        $retaurateurs = $this->getDoctrine()
+        $restaurateurs = $this->getDoctrine()
                              ->getManager()
                              ->getRepository('ETSUserBundle:User')
                              ->findByRole('ROLE_RESTAURATEUR');
         
         return $this->render('ETSGestionDeLivraisonsBundle:Default:index.html.twig', array(
-            'restaurants' => $retaurants,
-            'restaurateurs' => $retaurateurs
+            'restaurants' => $restaurants,
+            'restaurateurs' => $restaurateurs
         ));
         
     }

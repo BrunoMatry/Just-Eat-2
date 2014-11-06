@@ -45,7 +45,8 @@ class Restaurant
     /**
      * @var string
      * 
-     * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User", inversedBy="restaurants")
+     * @ORM\JoinColumn(name="restaurateur_id", referencedColumnName="id")
      */
     private $restaurateur;
 
