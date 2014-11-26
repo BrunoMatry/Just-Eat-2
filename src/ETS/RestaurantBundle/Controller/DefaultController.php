@@ -132,4 +132,18 @@ class DefaultController extends Controller
         
         return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
     }
+    
+    public function indexAction(Restaurant $restaurant)
+    {
+        $menus = $this->getDoctrine()
+                      ->getManager()
+                      ->getRepository('ETSMenuBundle:Menu')
+                      ->findByRestaurant($restaurant);
+        
+        return $this->render('ETSRestaurantBundle:Default:index.html.twig', array(
+            'menus' => $menus,
+            'restaurant'  => $restaurant
+        ));
+    }
+    
 }

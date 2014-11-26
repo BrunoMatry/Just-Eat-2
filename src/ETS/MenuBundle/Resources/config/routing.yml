@@ -1,0 +1,3 @@
+ets_menu_add:
+    path:     /add/{restaurant}
+    defaults: { _controller: ETSMenuBundle:Default:add }

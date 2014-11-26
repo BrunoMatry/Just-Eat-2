@@ -1,3 +1,7 @@
+ets_menu:
+    resource: "@ETSMenuBundle/Resources/config/routing.yml"
+    prefix:   /menu
+
 ets_restaurant:
     resource: "@ETSRestaurantBundle/Resources/config/routing.yml"
     prefix:   /restaurant

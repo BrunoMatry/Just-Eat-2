@@ -1,3 +1,7 @@
+ets_restaurant_index:
+    path:     /{restaurant}
+    defaults: { _controller: ETSRestaurantBundle:Default:index }
+
 ets_restaurant_add:
     path:     /add
     defaults: { _controller: ETSRestaurantBundle:Default:add }

@@ -39,7 +39,9 @@ Restaurants:
 <table>
 {% for r in restaurants %}
     <tr>
-        <td>{{ r.name }}</td>
+        <td>
+            <a href="{{ path('ets_restaurant_index', {'restaurant': r.id}) }}">{{ r.name }}</a>
+        </td>
 {% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
         <td>
             <a href="{{ path('ets_restaurant_edit', {'restaurant': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
