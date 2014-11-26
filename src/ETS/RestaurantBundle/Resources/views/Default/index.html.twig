@@ -1,14 +1,6 @@
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
+{% extends '::base.html.twig' %}
 
-<br/>
-<br/>
-
+{% block body %}
 <ul>
 {% for menu in menus %}
     <li>{{menu.name}}
@@ -23,7 +15,9 @@
 {%endfor%}
 </ul>
 
+<a href="{{ path('ets_commande_add', {'restaurant': restaurant.id}) }}">Passer commande</a>
 
 {% if is_granted('ROLE_RESTAURATEUR') and restaurant.restaurateur == app.user %}
     <a href="{{ path('ets_menu_add', {'restaurant': restaurant.id}) }}">Add a Menu</a>
 {%endif%}
+{% endblock %}

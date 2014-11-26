@@ -43,7 +43,7 @@ class Plat
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ETS\MenuBundle\Entity\Menu")
+     * @ORM\ManyToOne(targetEntity="Menu", inversedBy="plats")
      */
     private $menu;
 

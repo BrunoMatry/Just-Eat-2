@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<form method="POST" {{ form_enctype(form) }}>
+{{ form_row(form.date) }}
+{{ form_row(form.address) }}
+
+<ul class="selection" data-prototype="{{ form_widget(form.selection.vars.prototype)|e }}">
+
+</ul>
+
+{{ form_rest(form) }}
+</form>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ asset('bundles/etscommande/js/dynamicform.js')}}"></script>
+{% endblock %}

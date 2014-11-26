@@ -1,14 +1,6 @@
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
+{% extends '::base.html.twig' %}
 
-<br/>
-<br/>
-
+{% block body %}
 Hello !
 
 {% if app.user.username is defined %} Your logged as {{ app.user.username }} {% endif %} 
@@ -72,3 +64,4 @@ Restaurateurs:
 {% endif %}
 {% endfor %}
 </table>
+{% endblock %}

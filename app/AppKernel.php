@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new ETS\UserBundle\ETSUserBundle(),
             new ETS\RestaurantBundle\ETSRestaurantBundle(),
             new ETS\MenuBundle\ETSMenuBundle(),
+            new ETS\CommandeBundle\ETSCommandeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
