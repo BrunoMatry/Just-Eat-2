@@ -4,9 +4,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Just Eat 2{% endblock %}</title>
         
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">     
     </head>
     <body>
+        <a href="{{ path('ets_gestion_de_livraisons_index')}}">Accueil</a>
+        {% if is_granted('ROLE_ENTREPRENEUR') or is_granted('ROLE_RESTAURATEUR') %}
+             | <a href="{{ path('ets_user_private')}}">Gestion</a>
+        {% endif %}
+        {% if app.user.username is defined %}
+            <a href="{{ path('ets_user_edit') }}">{{ app.user.username }}</a> | 
+            <a href="{{ path('logout') }}">Deconnexion</a>    
+        {% else %}
+            <a href="{{ path('ets_user_add') }}">Enregistrement</a> | 
+            <a href="{{ path('login') }}">Connexion</a>
+        {% endif %} 
+
         {% for label, flashes in app.session.flashbag.all %}
             {% for flash in flashes %}
                 <div class="alert alert-{{ label }}">

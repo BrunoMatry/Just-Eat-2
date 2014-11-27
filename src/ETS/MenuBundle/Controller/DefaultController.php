@@ -25,12 +25,19 @@ class DefaultController extends Controller
             if ($form->isValid()) {
 
                 $menu->setRestaurant($restaurant);
+                
+                
+                $message = "Menu bien ajouté.";
+                
+                foreach($menu->getPlats() as $plat) {
+                    if($plat->getDescription() == '') {
+                        $message .= " Vous n'avez pas renseigné de descrption pour le plat \"".$plat->getName()."\".";
+                    }
+                }
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($menu);
                 $em->flush();
-
-                $message = "Menu bien ajouté.";
 
                 $request->getSession()->getFlashBag()->add('notice', $message);
 

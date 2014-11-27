@@ -20,28 +20,28 @@ class Restaurant
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
+    
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
-
+    
     /**
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=255)
      */
     private $phoneNumber;
-
+    
     /**
      * @var string
      * 
@@ -49,15 +49,15 @@ class Restaurant
      * @ORM\JoinColumn(name="restaurateur_id", referencedColumnName="id")
      */
     private $restaurateur;
-
+    
     /**
      * @var string
      * 
      * @ORM\ManyToOne(targetEntity="ETS\UserBundle\Entity\User")
      */
     private $entrepreneur;
-
-
+    
+    
     /**
      * Get id
      *
@@ -67,7 +67,7 @@ class Restaurant
     {
         return $this->id;
     }
-
+    
     /**
      * Set name
      *
@@ -77,10 +77,10 @@ class Restaurant
     public function setName($name)
     {
         $this->name = $name;
-
+        
         return $this;
     }
-
+    
     /**
      * Get name
      *
@@ -90,7 +90,7 @@ class Restaurant
     {
         return $this->name;
     }
-
+    
     /**
      * Set address
      *
@@ -100,10 +100,10 @@ class Restaurant
     public function setAddress($address)
     {
         $this->address = $address;
-
+        
         return $this;
     }
-
+    
     /**
      * Get address
      *
@@ -113,7 +113,7 @@ class Restaurant
     {
         return $this->address;
     }
-
+    
     /**
      * Set phoneNumber
      *
@@ -123,10 +123,10 @@ class Restaurant
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
-
+        
         return $this;
     }
-
+    
     /**
      * Get phoneNumber
      *
@@ -136,7 +136,7 @@ class Restaurant
     {
         return $this->phoneNumber;
     }
-
+    
     /**
      * Set restaurateur
      *
@@ -146,10 +146,10 @@ class Restaurant
     public function setRestaurateur($restaurateur)
     {
         $this->restaurateur = $restaurateur;
-
+        
         return $this;
     }
-
+    
     /**
      * Get restaurateur
      *
@@ -159,7 +159,7 @@ class Restaurant
     {
         return $this->restaurateur;
     }
-
+    
     /**
      * Set entrepreneur
      *
@@ -169,10 +169,10 @@ class Restaurant
     public function setEntrepreneur($entrepreneur)
     {
         $this->entrepreneur = $entrepreneur;
-
+        
         return $this;
     }
-
+    
     /**
      * Get entrepreneur
      *

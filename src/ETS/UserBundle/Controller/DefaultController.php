@@ -8,8 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
-{
-    
+{ 
     public function addAction(Request $request) {
         $user = new User();
         
@@ -17,7 +16,7 @@ class DefaultController extends Controller
         
         $formBuilder
             ->add('username', 'email')
-            ->add('birth_date', 'date')
+            ->add('birth_date', 'date', array('years' => range(1900, 2014)))
             ->add('phone_number', 'text')
             ->add('address', 'text')
             ->add('password', 'password')
@@ -37,6 +36,8 @@ class DefaultController extends Controller
             
             if($form['entrepreneur']->getData()) {
                 $user->addRole('ROLE_ENTREPRENEUR');
+            } else {
+                $user->addRole('ROLE_USER');
             }
             
             $em = $this->getDoctrine()->getManager();
@@ -76,4 +77,32 @@ class DefaultController extends Controller
         ));
     }
     
+    public function privateAction() {
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        if($this->get('security.context')->isGranted('ROLE_ENTREPRENEUR')) {
+            $restaurants = $this->getDoctrine()
+                                ->getManager()
+                                ->getRepository('ETSRestaurantBundle:Restaurant')
+                                ->findByEntrepreneur($user);
+            $restaurateurs = $this->getDoctrine()
+                                  ->getManager()
+                                  ->getRepository('ETSUserBundle:User')
+                                  ->findByEntrepreneur($user);       
+        } else if($this->get('security.context')->isGranted('ROLE_RESTAURATEUR')) {
+            $restaurants = $this->getDoctrine()
+                                ->getManager()
+                                ->getRepository('ETSRestaurantBundle:Restaurant')
+                                ->findByRestaurateur($user);  
+            $restaurateurs = array();
+        }
+        else {
+            return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
+        }
+        
+        return $this->render('ETSUserBundle:Default:private.html.twig', array(
+          'restaurants' => $restaurants,
+          'restaurateurs' => $restaurateurs,
+        ));
+    }
 }

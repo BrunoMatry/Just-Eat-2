@@ -20,6 +20,6 @@ class RestaurantRepository extends EntityRepository
                     ->getQuery();
 
       return new Paginator($query);
-    }
+}
   
 }

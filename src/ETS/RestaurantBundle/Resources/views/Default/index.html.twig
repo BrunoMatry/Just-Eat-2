@@ -1,23 +1,39 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    <h3>Restaurant {{restaurant.name}}</h3>
+    {%if menus is empty %}
+        Pas de menu pour le moment.
+    {%else%}
+    <h3>Menus :</h3>
 <ul>
 {% for menu in menus %}
     <li>{{menu.name}}
-        <ul>
+        <table>
         {% for plat in menu.plats %}
-            <li>
-                {{ plat.name }} - {{ plat.price }}$ - {{ plat.description }}
-            </li>
+            <tr>
+                <td> {{ plat.name }} </td><td> {{ plat.price }}$ </td><td> {{ plat.description }} </td>
+            </tr>
         {%endfor%}
-        </ul>
+        </table>
     </li>
 {%endfor%}
 </ul>
-
-<a href="{{ path('ets_commande_add', {'restaurant': restaurant.id}) }}">Passer commande</a>
-
+<a href="{{ path('ets_commande_add', {'restaurant': restaurant.id}) }}"><button type="button">Passer commande</button></a>
+{% endif %}
 {% if is_granted('ROLE_RESTAURATEUR') and restaurant.restaurateur == app.user %}
-    <a href="{{ path('ets_menu_add', {'restaurant': restaurant.id}) }}">Add a Menu</a>
-{%endif%}
+    <a href="{{ path('ets_menu_add', {'restaurant': restaurant.id}) }}"><button type="button" id="addbutton">Ajouter un menu</button></a>
+    {%if commandes is empty %}
+        Pas de commande pour le moment.
+    {%else%}
+    <h3>Commandes :</h3>
+    <table>
+    {% for commande in commandes %}
+        <tr>
+            <td><a href="{{ path('ets_commande_index', {'commande': commande.id}) }}"> Commande n°{{commande.id}} </a></td><td> {{commande.date|date('d/m/Y h:m')}} </td><td> {{commande.state}} </td>
+        </tr>
+    {% endfor %}
+    </table>
+    {%endif%}
+{% endif %}
 {% endblock %}

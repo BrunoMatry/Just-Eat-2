@@ -1,67 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-Hello !
-
-{% if app.user.username is defined %} Your logged as {{ app.user.username }} {% endif %} 
-
-{% if app.user.username is defined %}
-    <a href="{{ path('ets_user_edit') }}">Edit your profile</a>
-    <a href="{{ path('logout') }}">Logout</a>    
-{% else %}
-    <a href="{{ path('ets_user_add') }}">Sign In</a>
-    <a href="{{ path('login') }}">Login</a>
-{% endif %} 
-
-</br>
-</br>
-
-{% if is_granted('ROLE_ENTREPRENEUR') %}
-    <a href="{{ path('ets_restaurant_add') }}"><button type="button" id="addbutton">Add Restaurant</button></a>
-    <a href="{{ path('ets_restaurateur_add') }}"><button type="button" id="addbutton">Add Restaurateur</button></a>
-{% endif %}
-
-<br/>
-<br/>
-
-Restaurants:
-<br/>
-<br/>
-
-<table>
-{% for r in restaurants %}
-    <tr>
-        <td>
-            <a href="{{ path('ets_restaurant_index', {'restaurant': r.id}) }}">{{ r.name }}</a>
-        </td>
-{% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
-        <td>
-            <a href="{{ path('ets_restaurant_edit', {'restaurant': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
-        </td>
-        <td><a href="{{ path('ets_restaurant_delete', {'restaurant': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
-    </tr>
-{% endif %}
-{% endfor %}
-</table>
-
-<br/>
-<br/>
-
-Restaurateurs:
-<br/>
-<br/>
-
-<table>
-{% for r in restaurateurs %}
-    <tr>
-        <td>{{ r.username }}</td>
-{% if is_granted('ROLE_ENTREPRENEUR') and r.entrepreneur == app.user %}
-        <td>
-            <a href="{{ path('ets_restaurateur_edit', {'restaurateur': r.id}) }}"><button type="button" id="editbutton">Edit</button></a>
-        </td>
-        <td><a href="{{ path('ets_restaurateur_delete', {'restaurateur': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
-    </tr>
-{% endif %}
-{% endfor %}
-</table>
+    {% if restaurants is empty %}
+        Il n'y a aucun restaurant pour le moment.
+    {% else %}
+        <h3>Liste des restaurants :</h3>
+        <ul>
+            {% for r in restaurants %}
+                <li><a href="{{ path('ets_restaurant_index', {'restaurant': r.id}) }}">{{ r.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

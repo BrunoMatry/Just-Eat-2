@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% if not restaurants is empty %}
+        <h3>Mes Restaurants :</h3>
+        <table>
+            {% for r in restaurants %}
+                <tr>
+                    <td><a href="{{ path('ets_restaurant_index', {'restaurant': r.id}) }}">{{ r.name }}</a></td>
+                    {% if is_granted('ROLE_ENTREPRENEUR') %}
+                        <td><a href="{{ path('ets_restaurant_edit', {'restaurant': r.id}) }}"><button type="button" id="editbutton">Edit</button></a></td>
+                        <td><a href="{{ path('ets_restaurant_delete', {'restaurant': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if is_granted('ROLE_ENTREPRENEUR') %}
+        <a href="{{ path('ets_restaurant_add') }}"><button type="button" id="addbutton">Add Restaurant</button></a>
+        {% if not restaurateurs is empty %}
+            <h3>Mes Restaurateurs :</h3>
+            <table>
+            {% for r in restaurateurs %}
+                <tr>
+                    <td>{{ r.username }}</td>
+                    <td><a href="{{ path('ets_restaurateur_edit', {'restaurateur': r.id}) }}"><button type="button" id="editbutton">Edit</button></a></td>
+                    <td><a href="{{ path('ets_restaurateur_delete', {'restaurateur': r.id}) }}"><button type="button" id="deletebutton">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+        <a href="{{ path('ets_restaurateur_add') }}"><button type="button" id="addbutton">Add Restaurateur</button></a>
+    {% endif %}
+{% endblock %}

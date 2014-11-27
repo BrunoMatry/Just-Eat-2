@@ -18,9 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new ETS\GestionDeLivraisonsBundle\ETSGestionDeLivraisonsBundle(),
             new ETS\UserBundle\ETSUserBundle(),
-            new ETS\RestaurantBundle\ETSRestaurantBundle(),
             new ETS\MenuBundle\ETSMenuBundle(),
             new ETS\CommandeBundle\ETSCommandeBundle(),
+            new ETS\RestaurantBundle\ETSRestaurantBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

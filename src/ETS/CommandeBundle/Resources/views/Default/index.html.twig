@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <h3>Commande n°{{commande.id}} - {{commande.state}}</h3>
+    
+    Restaurant : {{commande.restaurant.name}}<br/><br/> 
+    Email du client : {{commande.user.username}}<br/> 
+    Addresse de livraison : {{commande.address}}<br/>
+    Date et heure de livraison : {{commande.date|date('d/m/Y h:m')}}<br/>
+    Contenu de la commande :
+    <ul>
+    {% for s in commande.selection %}
+        <li>
+            {{ s.menu.name }} - quantité : {{ s.quantity }}
+        </li>
+    {%endfor%}
+    </ul>
+    
+    {% if commande.state == 'En attente' %}
+    <li><a href="{{ path('ets_commande_change_state', {'commande': commande.id}) }}">Démarrer la préparation</a></li>
+    {% elseif commande.state == 'En preparation' %}
+    <li><a href="{{ path('ets_commande_change_state', {'commande': commande.id}) }}">Fin de la préparation</a></li>
+    {% endif %}
+{% endblock %}

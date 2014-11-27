@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityRepository;
 
 class DefaultController extends Controller
-{
+{ 
     public function addAction(Request $request) {
         
         if (!$this->get('security.context')->isGranted('ROLE_ENTREPRENEUR')) {
@@ -40,9 +40,9 @@ class DefaultController extends Controller
         ;
         
         $form = $formBuilder->getForm();
-       
+        
         $form->handleRequest($request);
-
+        
         if ($form->isValid()) {
 
             $entrepreneur = $this->get('security.context')->getToken()->getUser();
@@ -60,7 +60,7 @@ class DefaultController extends Controller
 
             $request->getSession()->getFlashBag()->add('notice', $message);
 
-            return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
+            return $this->redirect($this->generateUrl('ets_user_private'));
         }
         
         return $this->render('ETSRestaurantBundle:Default:add.html.twig', array(
@@ -109,7 +109,7 @@ class DefaultController extends Controller
 
             $request->getSession()->getFlashBag()->add('notice', 'Restaurant bien enregistré');
 
-            return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
+            return $this->redirect($this->generateUrl('ets_user_private'));
         }
         
         return $this->render('ETSRestaurantBundle:Default:add.html.twig', array(
@@ -140,9 +140,15 @@ class DefaultController extends Controller
                       ->getRepository('ETSMenuBundle:Menu')
                       ->findByRestaurant($restaurant);
         
+        $commandes = $this->getDoctrine()
+                          ->getManager()
+                          ->getRepository('ETSCommandeBundle:Commande')
+                          ->findByRestaurant($restaurant);
+        
         return $this->render('ETSRestaurantBundle:Default:index.html.twig', array(
-            'menus' => $menus,
-            'restaurant'  => $restaurant
+            'restaurant'  => $restaurant,
+            'menus' => $menus,      
+            'commandes'  => $commandes
         ));
     }
     

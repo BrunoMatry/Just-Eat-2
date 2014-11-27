@@ -16,7 +16,7 @@ class PlatType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', 'text', array('required' => false))
             ->add('price')
         ;
     }

@@ -6,6 +6,10 @@ ets_user_edit:
     path:     /edit
     defaults: { _controller: ETSUserBundle:Default:edit }
     
+ets_user_private:
+    path:     /private
+    defaults: { _controller: ETSUserBundle:Default:private }
+    
 ets_restaurateur_add:
     path:     /addrestaurateur
     defaults: { _controller: ETSUserBundle:Restaurateur:add }

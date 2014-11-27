@@ -22,7 +22,7 @@ class RestaurateurController extends Controller
         
         $formBuilder
             ->add('username', 'email')
-            ->add('birth_date', 'date')
+            ->add('birth_date', 'date', array('years' => range(1900, 2014)))
             ->add('phone_number', 'text')
             ->add('address', 'text')
             ->add('password', 'password')
@@ -74,7 +74,7 @@ class RestaurateurController extends Controller
 
             $request->getSession()->getFlashBag()->add('notice', $message);
 
-            return $this->redirect($this->generateUrl('ets_gestion_de_livraisons_index'));
+            return $this->redirect($this->generateUrl('ets_user_private'));
         }
         
         return $this->render('ETSUserBundle:Default:add.html.twig', array(
@@ -93,7 +93,7 @@ class RestaurateurController extends Controller
 
            $formBuilder
                ->add('username', 'email')
-               ->add('birth_date', 'date')
+               ->add('birth_date', 'date', array('years' => range(1900, 2014)))
                ->add('phone_number', 'text')
                ->add('address', 'text')
                ->add('password', 'password')

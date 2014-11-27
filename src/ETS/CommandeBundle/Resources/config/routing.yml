@@ -1,3 +1,11 @@
 ets_commande_add:
     path:     /add/{restaurant}
     defaults: { _controller: ETSCommandeBundle:Default:add }
+
+ets_commande_index:
+    path:     /{commande}
+    defaults: { _controller: ETSCommandeBundle:Default:index }
+    
+ets_commande_change_state:
+    path:     /change/{commande}
+    defaults: { _controller: ETSCommandeBundle:Default:changeState }

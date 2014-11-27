@@ -4,12 +4,14 @@ namespace ETS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  * 
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="UserRepository")
+ * @UniqueEntity(fields="username", message="Un utilisateur est déjà enregistré avec cette email.")
  */
 class User implements UserInterface
 {
@@ -25,7 +27,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     protected $username;
 
